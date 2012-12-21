@@ -1,0 +1,32 @@
+.bsjseparator { }
+.bsjCallWebServiceAfterLogin {  }
+.bsjCallWebServiceOnClick { }
+.bsjCallWebServiceOnLostFocus { }
+.bsjCallWebServiceOnEnterKey {  }
+.bsjCallWebServiceOnSubmit { }
+.bsjCallWebServiceOnLoaded { }
+.bsjCallWebServiceOnClickOnEmptyDisplay { }
+.bsjDisplay { }
+.bsjAction { }
+.bsjSql { }
+.bsjFormat { }
+.bsjForm { }
+.bsjWebService { }
+.bsjCallBack { }
+.bsjCallBackTriggerClick { }
+
+.rr:hover { cursor : pointer; }
+
+.bsjTopButtons , .docbtns  {margin-left : 10px !important;}
+.brand  {margin-left : 5px !important;}
+.bsjHide {display: none;}
+.bsjInvisible {  visibility: hidden; }
+
+
+
+.thumbnails > li { margin-bottom: 0px !important ; }
+
+
+.thumbnail {
+     border : 0px !important;
+}

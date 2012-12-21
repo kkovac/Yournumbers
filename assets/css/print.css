@@ -1,0 +1,47 @@
+@page
+{
+margin:0;
+}
+
+* {
+        background: none !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+ 
+        /* Images, vectors and such */
+        filter: Gray();                          /* IE4-8: depreciated */
+        filter: url('desaturate.svg#grayscale'); /* SVG version for IE10, Firefox, Safari 5 and Opera */
+        -webkit-filter: grayscale(100%);         /* Chrome + Safari 6 */
+        -moz-filter: grayscale(100%);            /* Future proof */
+        -ms-filter: grayscale(100%);             /* Future proof */
+        -o-filter: grayscale(100%);              /* Future proof */
+        filter: grayscale(100%);                 /* Future proof or polyfilled */
+    }
+ 
+    a {
+        text-decoration: underline;
+    }
+     
+.nijezapispis, .notforprinting ,.navbar , #bjsFooterContainer , #backstretch { display: none; height : 0px; width:0px; border : none 0px; padding : 0; margin : 0;
+ box-shadow: none !important;
+        text-shadow: none !important;
+
+}
+ 
+ body {font-size : 10px; color : #000; background : #fff;}
+ 
+  
+ 
+.bsjDocumentContainer
+      {
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+      
+      th { color : #000; border : solid 1px #000; background : silver; }
+      td { border-bottom : solid 1px #000; }
+            
+     .datepicker   { border : none 0px;  }
+   
+

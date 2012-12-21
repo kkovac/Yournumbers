@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Yournumbers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your numbers - HTML5 jquery responsive bootstrapped application">
+    <meta name="author" content="Krešimir Kovač : kkovac@spin.hr , kovack@gmail.com">
+    
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" class="changeme" rel="stylesheet" />
+    <link href="" class="additional" rel="stylesheet" />
+  
+    <link href="assets/css/bsj.css" rel="stylesheet" />
+    <link href="assets/css/print.css?5555001" rel="stylesheet"  type="text/css" media="print" />
+    <link href="assets/css/jquery.dataTables.css" rel="stylesheet" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+        }
+    </style>
+   
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar">
+  
+    <!--/ WEB SERVICE --> <div id="bsjWebService" class="hide">index_service.asp</div>
+  
+     <!--/ TOP NAVIGATION -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          
+           <!--/ HOME --> <div class="btn-group pull-left"><a class="btn btn-danger" href="index.html"><i class="icon-home icon-white" id="bsjhomeicon"></i> </a></div>
+           <!--/ BRAND --> <a class="brand" href="index.html" bsjappcounter="0" >Track Your Numbers</a>
+            
+           <!--/ EXIT --> <div id="bsjExitContainer"></div>    
+           <!--/ THEME --> <div id="bsjThemeContainer"></div>  
+
+                                        
+
+         <!--/ COLLAPSE -->
+            <div class="nav-collapse collapse">
+                <ul class="nav nav-pills">
+                    <li><a href="#entrysection" data-toggle="tab" id="entrysectionclick">Entry</a></li>
+                    <li><a href="#reportssection" data-toggle="tab" id="reportssectionclick">Reports</a></li>
+                    <li><a href="#settingssection" data-toggle="tab" id="settingssectionclick">Settings</a></li>
+                </ul>
+            </div>
+         <!--/ END OF COLLAPSE -->
+            
+          
+         
+        </div>
+      </div>
+    </div>
+    <!--/ END OF TOP NAVIGATION -->
+
+          
+   
+          <!--/ APPLICATION -->
+          
+          
+
+              <div class="container" >
+
+                            <!--/ DEBUG --> <div class="modal hide fade" id="myModal"><div class="modal-header"><button class="close" data-dismiss="modal">×</button><h3>Call stack</h3></div><div class="modal-body"><p><div><ul id="bsjdebug" class="bsjDisplay"></ul></div></p></div><div class="modal-footer"><a href="#" class="btn" data-dismiss="modal">Close</a></div></div>
+              
+                            <!--/ DESKTOP DISPLAY --> 
+                                    <div id="bsjdesktopdisplay" class="bsjDisplay bsjCallWebServiceAfterLogin-not" bsjDisplay="bsjdesktopdisplay" bsjCallBackTriggerClick="" bsjCallBack="" bsjAction="" bsjSql="" bsjFormat="" bsjForm="" bsjWebService="POS_service.asp" >
+
+                                        
+                                        <div class="tab-content">
+
+                                        <div id="entrysection" class="tab-pane">
+                                                <form class="form-inline" id="expenseform">
+                                                    <div class="input-prepend input-append">
+                                                      <span class="add-on">Value : </span>
+                                                      <input class="span2" type="text" id="expensevalue" name="expensevalue">
+                                                      <span class="add-on">$</span>
+                                                     </div>
+                                                     <br /> <br />
+                                                    <span class="btn btn-danger" id="expensesave">Save expense</span>
+                                                  </form>
+                                        </div>
+
+                                                
+                                        
+                                        <div id="reportssection" class="tab-pane">
+                                                        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+                                        </div>                 ​
+
+                                         <div id="settingssection" class="tab-pane">
+                                                        settings
+                                        </div>                 ​
+                                                               
+                                            </div>
+                                        
+
+
+                                    </div> 
+                            <!--/ END OF DESKTOP DISPLAY -->
+
+                            <!--/ AJAX LOADER  --> <div class="container"><img src="assets/ajax-loader.gif" id="bsjdesktopdisplayloadinggif" class="hide" alt="" /></div>  
+              </div> 
+                  
+             
+                  <br />
+          <!--/ END OF APPLICATION -->          
+    
+     
+    <!--/ FOOTER --> <div id="bjsFooterContainer"></div>   
+    <!--/ bsjRESPONSE TEMP --> <div id="bsjResponse" class="hide"></div>   
+    
+     
+    <!-- Le javascript
+    ================================================== -->
+    <script src="assets/js/jquery.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.js" type="text/javascript"></script>
+   
+    <script src="assets/js2/jquery.dataTables.js" type="text/javascript"></script>
+    
+	<script src="assets/js2/jquery.Storage.js" type="text/javascript"></script>
+	<script src="assets/js2/bsj.ext.js?5" type="text/javascript"></script>
+    <script src="assets/js2/jquery.scrollTo-1.4.2-min.js" type="text/javascript"></script>
+
+    <script src="assets/js2/jquery.backstretch.js" type="text/javascript"></script>
+    
+    <script src="assets/jschart/highcharts.js" type="text/javascript"></script>
+    <script src="assets/jschart/modules/exporting.js" type="text/javascript"></script>
+     
+     <!--/ PAGE SPECIFIC -->   
+     
+     
+           
+               <script>
+                   $(document).ready(function () {
+
+                       $("#entrysectionclick").trigger("click");
+
+                       // create database and insert defolte ...
+                       var db = openDatabase('expensesdb7', '1.0', 'expenses database', 2 * 1024 * 1024);
+
+                       db.transaction(function (tx) {
+                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_type (id unique, name text)');
+                           tx.executeSql('INSERT INTO expenses_type (id, name) VALUES (1, "home")');
+                           tx.executeSql('INSERT INTO expenses_type (id, name) VALUES (2, "car")');
+                           tx.executeSql('INSERT INTO expenses_type (id, name) VALUES (3, "bars")');
+
+                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_tran (id integer primary key asc unique, expenses_type_id integer, dt datetime, value decimal)');
+
+                       });
+                       //  end of create database 
+
+
+
+                       // save expense ...
+                       $("#expensesave").click(function () {
+                           var db = openDatabase('expensesdb7', '1.0', 'expenses database', 2 * 1024 * 1024);
+                           db.transaction(function (tx) {
+                               var newDate = new Date();
+                               tx.executeSql("INSERT INTO expenses_tran (expenses_type_id,dt,value) select 1,datetime()," + $("#expensevalue").val());
+                           });
+                       });
+                       // end of save expense
+
+
+
+                       // callservice1
+                       $("#callservice1").click(function () {
+                           $.ajax({
+                               url: 'http://www.spin.hr/ng/test.asp',
+                               dataType: 'jsonp',
+                               jsonp: 'jsoncallback',
+                               timeout: 5000,
+                               success: function (data, status) {
+                                   //alert(data.odgovor);
+                                   $("#testresponse1").html(data.odgovor);
+                               },
+                               error: function (xhr, ajaxOptions, thrownError) {
+                                   alert(thrownError);
+
+                               }
+                           });
+                       });
+                       // end of callservice1
+
+
+
+                       // callservice2
+                       $("#callservice2").click(function () {
+                           $.ajax({
+                               url: 'http://www.spin.hr/ng/test.asp?' + $("#expenseform").serialize(),
+                               type: 'POST',
+                               cache: false,
+                               dataType: 'jsonp',
+                               jsonp: 'jsoncallback',
+                               async: false,
+                               contentType: "application/json;charset=UTF-8",
+                               success: function (data, status) {
+                                   $("#testresponse2").html(data.odgovor);
+                               },
+                               error: function (xhr, ajaxOptions, thrownError) {
+                                   alert(thrownError);
+                               }
+                           });
+                       });
+                       // end of callservice2
+
+
+
+
+                       // --------------
+                       function getPlaces() {
+
+                           var output = $('#placeList');
+
+                           $.ajax({
+                               url: 'http://...',
+                               dataType: 'jsonp',
+                               jsonp: 'jsoncallback',
+                               timeout: 5000,
+                               success: function (data, status) {
+                                   $.each(data, function (i, item) {
+                                       var place = '<li><a href="">' + item.name + '<span class="ui-li-count">'
+                                       + item.checkins + '</span></a></li>';
+
+                                       output.append(place);
+                                   });
+                               },
+                               error: function () {
+                                   //
+                               }
+                           });
+
+                       }
+                       // --------------
+
+                       $("#reportssectionclick").click(function () {
+                           Chartiraj();
+                       });
+
+
+                       
+                       function Chartiraj() {
+                           var chart;
+                           $(document).ready(function () {
+                               chart = new Highcharts.Chart({
+                                   chart: {
+                                       renderTo: 'container',
+                                       type: 'column'
+                                   },
+                                   title: {
+                                       text: 'Stacked column chart'
+                                   },
+                                   xAxis: {
+                                       categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                                   },
+                                   yAxis: {
+                                       min: 0,
+                                       title: {
+                                           text: 'Total fruit consumption'
+                                       },
+                                       stackLabels: {
+                                           enabled: true,
+                                           style: {
+                                               fontWeight: 'bold',
+                                               color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                                           }
+                                       }
+                                   },
+                                   legend: {
+                                       align: 'right',
+                                       x: -100,
+                                       verticalAlign: 'top',
+                                       y: 20,
+                                       floating: true,
+                                       backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                                       borderColor: '#CCC',
+                                       borderWidth: 1,
+                                       shadow: false
+                                   },
+                                   tooltip: {
+                                       formatter: function () {
+                                           return '<b>' + this.x + '</b><br/>' +
+                                               this.series.name + ': ' + this.y + '<br/>' +
+                                               'Total: ' + this.point.stackTotal;
+                                       }
+                                   },
+                                   plotOptions: {
+                                       column: {
+                                           stacking: 'normal',
+                                           dataLabels: {
+                                               enabled: true,
+                                               color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                                           }
+                                       }
+                                   },
+                                   series: [{
+                                       name: 'John',
+                                       data: [5, 3, 4, 7, 2]
+                                   }, {
+                                       name: 'Jane',
+                                       data: [2, 2, 3, 2, 1]
+                                   }, {
+                                       name: 'Joe',
+                                       data: [3, 4, 4, 2, 5]
+                                   }]
+                               });
+                           });
+                       }
+
+
+
+                   });
+                </script>
+            
+        <!--/ END OF PAGE SPECIFIC --> 
+     
+ 
+     
+  </body>
+</html>

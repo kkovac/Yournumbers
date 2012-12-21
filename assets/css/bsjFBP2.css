@@ -1,0 +1,19 @@
+ 
+body {
+   color: #fff !important;
+  background-color: #000 !important;
+}
+
+.modal {
+    background-color: #000 !important;
+}
+
+.thumbnail .caption {
+  padding: 9px;
+  color: #fff !important;
+}
+
+
+.well {
+          color: #000 !important;
+   }
