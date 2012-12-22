@@ -50,7 +50,7 @@
           </a>
           
            <!--/ HOME --> <div class="btn-group pull-left"><a class="btn btn-danger" href="index.html"><i class="icon-home icon-white" id="bsjhomeicon"></i> </a></div>
-           <!--/ BRAND --> <a class="brand" href="index.html" bsjappcounter="0" >Track Your Numbers</a>
+           <!--/ BRAND --> <a class="brand" href="index.html" bsjappcounter="0" >Yournumbers</a>
             
            <!--/ EXIT --> <div id="bsjExitContainer"></div>    
            <!--/ THEME --> <div id="bsjThemeContainer"></div>  
@@ -60,9 +60,9 @@
          <!--/ COLLAPSE -->
             <div class="nav-collapse collapse">
                 <ul class="nav nav-pills">
-                    <li><a href="#entrysection" data-toggle="tab" id="entrysectionclick">Entry</a></li>
-                    <li><a href="#reportssection" data-toggle="tab" id="reportssectionclick">Reports</a></li>
-                    <li><a href="#settingssection" data-toggle="tab" id="settingssectionclick">Settings</a></li>
+                    <li><a href="#entrysection" data-toggle="tab" id="entrysectionclick"><i class="icon-edit"></i> Entry</a></li>
+                    <li><a href="#reportssection" data-toggle="tab" id="reportssectionclick"><i class="icon-signal"></i> Reports</a></li>
+                    <li><a href="#settingssection" data-toggle="tab" id="settingssectionclick"><i class="icon-th-large"></i> Settings</a></li>
                 </ul>
             </div>
          <!--/ END OF COLLAPSE -->
@@ -91,15 +91,72 @@
                                         <div class="tab-content">
 
                                         <div id="entrysection" class="tab-pane">
-                                                <form class="form-inline" id="expenseform">
-                                                    <div class="input-prepend input-append">
-                                                      <span class="add-on">Value : </span>
-                                                      <input class="span2" type="text" id="expensevalue" name="expensevalue">
-                                                      <span class="add-on">$</span>
-                                                     </div>
-                                                     <br /> <br />
-                                                    <span class="btn btn-danger" id="expensesave">Save expense</span>
-                                                  </form>
+                                                <div class="row-fluid">
+                                                    <div class="span4 bsjTransparent  well well-small">
+                                                        <span class="label label-info">New entry:</span>
+                                                        <form class="form-horisontal" id="expenseform">
+                                                             
+                                                            <div class="input-append">
+                                                              <input class="input-medium" placeholder="number" type="number" step="any" id="expensevalue" name="expensevalue">
+                                                              <span class="add-on"><i class="icon-certificate"></i></span>
+                                                             </div>
+
+                                                            <div class="input-append">
+                                                              <input class="input-medium" placeholder="description" type="text" id="expensedescription" name="expensedescription">
+                                                              <span class="add-on"><i class="icon-edit"></i></span>
+                                                             </div>
+                                                            <br />
+                                                     
+                                                            <div class="btn btn-danger" id="expensesave">Save</div>
+                                                          </form>
+                                                        </div>
+
+                                                    <div class="span5   well well-small">
+                                                        <span class="label label-info">Recent entries:</span><br />
+                                                        <table class="table table-condensed" id="recententries">
+                                                              <thead>
+                                                                <tr>
+                                                                  <th><span class="label label-important">Date Time</span></th>
+                                                                  <th><span class="label label-important">Value</span></th>
+                                                                  <th><span class="label label-important">Description</span></th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                       
+                                                              </tbody>
+                                                            </table>
+                                                    </div>
+
+                                                    <div class="span3   well well-small">
+                                                        <span class="label label-info">Statistics:</span><br />
+                                                            <table class="table table-condensed">
+                                                              <thead>
+                                                                <tr>
+                                                                  <th><span class="label label-inverse">#</span></th>
+                                                                  <th><span class="label label-inverse">Period</span></th>
+                                                                  <th><span class="label label-inverse">Value</span></th>
+                                                                </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td>1</td>
+                                                                  <td>This month</td>
+                                                                  <td><div id="thisMonth"></div></td>
+                 
+                                                                </tr>
+                                                                <tr>
+                                                                  <td>2</td>
+                                                                  <td>Total</td>
+                                                                  <td><div id="total"></div></td>
+                                                                </tr>
+                
+                                                              </tbody>
+                                                            </table>
+                                                    </div>
+
+                                                    
+
+                                                    </div>
                                         </div>
 
                                                 
@@ -114,7 +171,7 @@
                                                                
                                             </div>
                                         
-
+                                         
 
                                     </div> 
                             <!--/ END OF DESKTOP DISPLAY -->
@@ -155,17 +212,21 @@
                    $(document).ready(function () {
 
                        $("#entrysectionclick").trigger("click");
+                       getStatistics();
 
                        // create database and insert defolte ...
-                       var db = openDatabase('expensesdb7', '1.0', 'expenses database', 2 * 1024 * 1024);
+                       var db = openDatabase('expensesdb8', '1.0', 'expenses database', 2 * 1024 * 1024);
 
                        db.transaction(function (tx) {
-                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_type (id unique, name text)');
-                           tx.executeSql('INSERT INTO expenses_type (id, name) VALUES (1, "home")');
-                           tx.executeSql('INSERT INTO expenses_type (id, name) VALUES (2, "car")');
-                           tx.executeSql('INSERT INTO expenses_type (id, name) VALUES (3, "bars")');
+                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_type (id INTEGER primary key asc unique, name TEXT, share INTEGER, sort TEXT, serverid INTEGER )');
+                           tx.executeSql('INSERT INTO expenses_type (name,share,sort,serverid) VALUES ("home",1,1,0)');
+                           tx.executeSql('INSERT INTO expenses_type (name,share,sort,serverid) VALUES ("car",1,1,0)');
+                           tx.executeSql('INSERT INTO expenses_type (name,share,sort,serverid) VALUES ("bars",1,1,0)');
 
-                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_tran (id integer primary key asc unique, expenses_type_id integer, dt datetime, value decimal)');
+                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_tran (id INTEGER primary key asc unique, expenses_type_id INTEGER, dt TEXT, value NUMERIC, description TEXT, share INTEGER)');
+
+                           tx.executeSql('CREATE TABLE IF NOT EXISTS expenses_settings (id INTEGER primary key asc unique, webserviceurl TEXT, username TEXT, password TEXT, share INTEGER, userguid TEXT, description TEXT)');
+                           tx.executeSql('INSERT INTO expenses_settings (webserviceurl, username, password, share, userguid,description) VALUES ("", "","",1,"","")');
 
                        });
                        //  end of create database 
@@ -174,11 +235,16 @@
 
                        // save expense ...
                        $("#expensesave").click(function () {
-                           var db = openDatabase('expensesdb7', '1.0', 'expenses database', 2 * 1024 * 1024);
+                           $("#expensesave").hide('');
+                           var db = openDatabase('expensesdb8', '1.0', 'expenses database', 2 * 1024 * 1024);
                            db.transaction(function (tx) {
                                var newDate = new Date();
-                               tx.executeSql("INSERT INTO expenses_tran (expenses_type_id,dt,value) select 1,datetime()," + $("#expensevalue").val());
+                               tx.executeSql("INSERT INTO expenses_tran (expenses_type_id,share,dt,value,description) select 1,1,datetime()," + $("#expensevalue").val() + ",'" + $("#expensedescription").val() + "'");
+                               $("#expensevalue").val('');
+                               $("#expensedescription").val('');
+                               getStatistics();
                            });
+                           $("#expensesave").show('');
                        });
                        // end of save expense
 
@@ -224,6 +290,64 @@
                            });
                        });
                        // end of callservice2
+
+                       
+                       function getStatistics() {
+                           getSumMonth();
+                           getSumTotal();
+                           getRecentEntries()
+                       }
+
+                       // --------------
+                       function getRecentEntries() {
+                           
+                           var db = openDatabase('expensesdb8', '1.0', 'expenses database', 2 * 1024 * 1024);
+
+                           db.transaction(function (tx) {
+                               tx.executeSql("select  * from expenses_tran order by id desc limit 5", [], function (tx, results) {
+
+                                   $('#recententries tr').not(function () { if ($(this).has('th').length) { return true } }).remove();
+
+                                   var len = results.rows.length, i;
+                                   for (i = 0; i < len; i++) {
+                                       //alert(results.rows.item(i).value);
+                                       $("#recententries").append("<tr><td>" + results.rows.item(i).dt + "</td><td>" + results.rows.item(i).value + "</td><td>" + results.rows.item(i).description + "</td></tr>");
+                                   }
+
+                               }, null);
+                           });
+                       }
+                       // --------------
+
+
+                       // --------------
+                       function getSumMonth() {
+                           $('#thisMonth').html("");
+                           var db = openDatabase('expensesdb8', '1.0', 'expenses database', 2 * 1024 * 1024);
+
+                           db.transaction(function (tx) {
+                               tx.executeSql("select sum(value) as total from expenses_tran where strftime('%m',dt) = strftime('%m','now')", [], function (tx, results) {
+                                   $('#thisMonth').html(results.rows.item(0).total);
+
+                               }, null);
+                           });
+                       }
+                       // --------------
+
+                       // --------------
+                       
+                       function getSumTotal() {
+                           $('#total').html("");
+                           var db = openDatabase('expensesdb8', '1.0', 'expenses database', 2 * 1024 * 1024);
+
+                           db.transaction(function (tx) {
+                               tx.executeSql("select sum(value) as total from expenses_tran", [], function (tx, results) {
+                                   $('#total').html(results.rows.item(0).total);
+
+                               }, null);
+                           });
+                       }
+                       // --------------
 
 
 

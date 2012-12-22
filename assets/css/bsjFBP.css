@@ -27,6 +27,7 @@ table {
 .well {
      background :  url(transparent-bg.png) !important;
      color: #fff !important;
+     border : none;
    }
 
 body {
